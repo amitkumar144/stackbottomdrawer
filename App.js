@@ -1,13 +1,16 @@
 import React from 'react';
 import MainNavigator from './src/navigation/rootNavigator';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-
+import {I18nextProvider} from 'react-i18next';
+import i18n from './src/translations/i18n';
 
 const App = () => {
   return (
-    <SafeAreaProvider>
-      <MainNavigator />
-    </SafeAreaProvider>
+    <I18nextProvider i18n={i18n}>
+      <SafeAreaProvider>
+        <MainNavigator />
+      </SafeAreaProvider>
+    </I18nextProvider>
   );
 };
 

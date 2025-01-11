@@ -1,23 +1,12 @@
-import {Button, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {SafeAreaView, StyleSheet} from 'react-native';
 import React from 'react';
-import {MenuIcon} from '../../assets';
+import LanguageComponent from '../../components/LanguageComponent';
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = () => {
   return (
-    <View style={styles.container}>
-      {/* <TouchableOpacity onPress={() => navigation.toggleDrawer()} style={{position: 'absolute', top: 12, left: 10}}>
-        <MenuIcon width={24} height={24} />
-      </TouchableOpacity> */}
-      <Text>HomeScreen</Text>
-      <Button
-        title="Navigate within tab"
-        onPress={() => navigation.navigate('WithInBottomScreen')}
-      />
-      <Button
-        title="Navigate to Stack"
-        onPress={() => navigation.navigate('FullScreen')}
-      />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <LanguageComponent />
+    </SafeAreaView>
   );
 };
 
@@ -26,7 +15,6 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: '#fff',
   },
 });

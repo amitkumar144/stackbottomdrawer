@@ -1,25 +1,11 @@
-import {Button, Platform, StyleSheet, Text, View} from 'react-native';
-import React, {useEffect} from 'react';
+import {Button, StyleSheet, Text, View} from 'react-native';
+import React from 'react';
 
-const WithInBottomScreen = ({navigation}) => {
-  useEffect(() => {
-    navigation.getParent()?.setOptions({tabBarStyle: {display: 'none'}});
-    return () => {
-      navigation.getParent()?.setOptions({
-        tabBarStyle: {
-          backgroundColor: '#fff',
-          borderTopWidth: 0,
-          elevation: 0,
-          paddingTop: 10,
-          height: Platform.OS === 'android' ? 65 : null,
-        },
-      });
-    };
-  }, []);
-
+const WithInBottomScreen = ({navigation, route}) => {
+  const selectedLanguage = route.params.data;
   return (
     <View style={styles.container}>
-      <Text>WithInBottomScreen</Text>
+      <Text>{`You have selected "${selectedLanguage}" language`}</Text>
       <Button title="goBack" onPress={() => navigation.goBack()} />
     </View>
   );

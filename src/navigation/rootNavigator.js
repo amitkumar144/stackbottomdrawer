@@ -8,7 +8,6 @@ import {
 import BottomNavigator from './bottomNavigator';
 import SplashScreen from '../screens/SplashScreen';
 import StackFullScreen from '../screens/StackFullScreen';
-import DrawerNavigator from './drawerNavigator';
 
 const Stack = createStackNavigator();
 
@@ -20,7 +19,14 @@ const LoginStack = () => {
       }}>
       <Stack.Screen name="Splash" component={SplashScreen} />
       <Stack.Screen name="FullScreen" component={StackFullScreen} />
-      <Stack.Screen name="HomeScreen" component={DrawerNavigator} />
+      <Stack.Screen
+        name="HomeScreen"
+        component={BottomNavigator}
+        options={{
+          cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter,
+          gestureEnabled: false,
+        }}
+      />
     </Stack.Navigator>
   );
 };

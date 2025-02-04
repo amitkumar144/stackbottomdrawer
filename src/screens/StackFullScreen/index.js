@@ -5,7 +5,7 @@ const StackFullScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Text>StackFullScreen</Text>
-      <Button title="Go Back" onPress={() => navigation.goBack()} />
+      <Button title="Go Back" onPress={() => navigation?.goBack()} />
     </View>
   );
 };

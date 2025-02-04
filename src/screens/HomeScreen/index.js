@@ -1,12 +1,25 @@
-import {SafeAreaView, StyleSheet} from 'react-native';
+import {
+  PermissionsAndroid,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 import LanguageComponent from '../../components/LanguageComponent';
+import StackFullScreen from '../StackFullScreen';
+import DebouncingComponent from '../../components/Debouncing';
+import PaginationComponent from '../../components/PaginationFlatlist';
+import CoffeeHome from '../../components/CoffeeHome';
+import {Colors} from '../../config/styles';
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
+  
   return (
-    <SafeAreaView style={styles.container}>
-      <LanguageComponent />
-    </SafeAreaView>
+    <View style={styles.container}>
+      <CoffeeHome navigation={navigation} />
+    </View>
   );
 };
 

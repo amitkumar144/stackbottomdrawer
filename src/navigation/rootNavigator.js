@@ -8,6 +8,9 @@ import {
 import BottomNavigator from './bottomNavigator';
 import SplashScreen from '../screens/SplashScreen';
 import StackFullScreen from '../screens/StackFullScreen';
+import CoffeeDetailScreen from '../components/CoffeeDetailScreen';
+import CoffeeOrderScreen from '../screens/CoffeeOrderScreen';
+import CoffeeMapView from '../components/CoffeeMapView';
 
 const Stack = createStackNavigator();
 
@@ -19,6 +22,9 @@ const LoginStack = () => {
       }}>
       <Stack.Screen name="Splash" component={SplashScreen} />
       <Stack.Screen name="FullScreen" component={StackFullScreen} />
+      <Stack.Screen name="DetailScreen" component={CoffeeDetailScreen} />
+      <Stack.Screen name="OrderScreen" component={CoffeeOrderScreen} />
+      <Stack.Screen name="MapScreen" component={CoffeeMapView} />
       <Stack.Screen
         name="HomeScreen"
         component={BottomNavigator}

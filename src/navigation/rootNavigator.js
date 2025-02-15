@@ -11,6 +11,7 @@ import StackFullScreen from '../screens/StackFullScreen';
 import CoffeeDetailScreen from '../components/CoffeeDetailScreen';
 import CoffeeOrderScreen from '../screens/CoffeeOrderScreen';
 import CoffeeMapView from '../components/CoffeeMapView';
+import VerticalScrollableCard from '../screens/VerticalScrollableCard';
 
 const Stack = createStackNavigator();
 
@@ -25,6 +26,7 @@ const LoginStack = () => {
       <Stack.Screen name="DetailScreen" component={CoffeeDetailScreen} />
       <Stack.Screen name="OrderScreen" component={CoffeeOrderScreen} />
       <Stack.Screen name="MapScreen" component={CoffeeMapView} />
+      <Stack.Screen name="VerticalCard" component={VerticalScrollableCard} />
       <Stack.Screen
         name="HomeScreen"
         component={BottomNavigator}

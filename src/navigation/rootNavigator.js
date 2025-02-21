@@ -13,6 +13,9 @@ import CoffeeOrderScreen from '../screens/CoffeeOrderScreen';
 import CoffeeMapView from '../components/CoffeeMapView';
 import VerticalScrollableCard from '../screens/VerticalScrollableCard';
 import CarouselBackgroundAnimation from '../screens/CarouselBackgroundAnimation';
+import SharedElementTransitionOne from '../components/SharedElementTransition/SharedElementTransitionOne';
+import ToDoComponent from '../components/TodoComponent';
+import ReelComponent from '../components/ReelComponent';
 
 const Stack = createStackNavigator();
 
@@ -28,7 +31,16 @@ const LoginStack = () => {
       <Stack.Screen name="OrderScreen" component={CoffeeOrderScreen} />
       <Stack.Screen name="MapScreen" component={CoffeeMapView} />
       <Stack.Screen name="VerticalCard" component={VerticalScrollableCard} />
-      <Stack.Screen name="CarouselCard" component={CarouselBackgroundAnimation} />
+      <Stack.Screen name='Todo' component={ToDoComponent} />
+      <Stack.Screen name='Reel' component={ReelComponent} />
+      <Stack.Screen
+        name="CarouselCard"
+        component={CarouselBackgroundAnimation}
+      />
+      <Stack.Screen
+        name="SharedElementA"
+        component={SharedElementTransitionOne}
+      />
       <Stack.Screen
         name="HomeScreen"
         component={BottomNavigator}

@@ -14,6 +14,8 @@ import {
   HomeIcon,
   ProfileAltIcon,
   ProfileIcon,
+  ReelAltIcon,
+  ReelIcon,
   SettingAltIcon,
   SettingIcon,
 } from '../assets';
@@ -21,6 +23,7 @@ import HomeStack from './navigators/homeStackNavigator';
 import DetailStack from './navigators/detailStackNavigator';
 import SettingStack from './navigators/settingStackNavigator';
 import ProfileStack from './navigators/profileStackNavigator';
+import ReelComponent from '../components/ReelComponent';
 
 const BottomNavigator = () => {
   let WIDTH = 25;
@@ -40,17 +43,17 @@ const BottomNavigator = () => {
         </View>
       )}
       screenOptions={{
-        tabBarActiveTintColor: '#000000',
+        tabBarActiveTintColor: '#fff',
         tabBarInactiveTintColor: '#767676',
-        tabBarStyle:{
-          backgroundColor: '#fff',
+        tabBarStyle: {
+          backgroundColor: '#000',
           borderTopWidth: 0,
           elevation: 0,
           paddingTop: 10,
           height: Platform.OS === 'android' ? 65 : null,
         },
         tabBarLabelStyle: {
-          fontFamily: "Arial",
+          fontFamily: 'Arial',
           fontSize: 11,
         },
       }}>
@@ -96,6 +99,24 @@ const BottomNavigator = () => {
           headerShown: false,
           tabBarIcon: ({focused}) =>
             focused ? (
+              <ReelIcon width={WIDTH} height={HEIGHT} />
+            ) : (
+              <ReelAltIcon width={WIDTH} height={HEIGHT} />
+            ),
+        }}
+        name="Reel"
+        listeners={tabBarListeners}
+        component={ReelComponent}
+      />
+
+      <BottomTabNavigator.Screen
+        options={{
+          tabBarShowLabel: true,
+          gestureEnabled: false,
+          unmountOnBlur: true,
+          headerShown: false,
+          tabBarIcon: ({focused}) =>
+            focused ? (
               <DetailAltIcon width={WIDTH} height={HEIGHT} />
             ) : (
               <DetailIcon width={WIDTH} height={HEIGHT} />
@@ -105,6 +126,7 @@ const BottomNavigator = () => {
         listeners={tabBarListeners}
         component={DetailStack}
       />
+
       <BottomTabNavigator.Screen
         options={{
           tabBarShowLabel: true,

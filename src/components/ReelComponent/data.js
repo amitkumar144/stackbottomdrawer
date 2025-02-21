@@ -8,6 +8,7 @@ export const VIDEO_DATA = [
     uploadTime: 'May 9, 2011',
     views: '24.9M',
     author: 'Vlc Media Player',
+    video: require('../../assets/videos/video1.mov'),
     videoUrl:
       'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
     audioUrl:
@@ -40,6 +41,7 @@ export const VIDEO_DATA = [
   {
     id: 'V_ID_2',
     title: 'Captain America',
+    video: require('../../assets/videos/video2.mov'),
     thumbnailUrl:
       'https://ew.com/thmb/n2Up7p2IkB-OEWfEq-cxyaB9YOw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/evans-2000-d2f2889582f445f1a73065966709deb2.jpg',
     duration: '12:18',
@@ -77,6 +79,7 @@ export const VIDEO_DATA = [
   {
     id: 'V_ID_3',
     title: 'Thor',
+    video: require('../../assets/videos/video3.mov'),
     thumbnailUrl:
       'https://ew.com/thmb/DeGqRhiBc1U0NjqvFf1iSpEUsTM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/thor-2000-0d729c17aaca47668a7659a583db6752.jpg',
     duration: '8:18',
@@ -114,6 +117,7 @@ export const VIDEO_DATA = [
   {
     id: 'V_ID_4',
     title: 'Doctor Strange',
+    video: require('../../assets/videos/video1.mov'),
     thumbnailUrl:
       'https://ew.com/thmb/lOAuVzIS_ozAGDLMmdIsxiusDUs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/strange-2000-8f262387f0174780989bc42b4afca85a.jpg',
     duration: '8:18',
@@ -150,6 +154,7 @@ export const VIDEO_DATA = [
   {
     id: 'V_ID_5',
     title: 'Spider-Man',
+    video: require('../../assets/videos/video5.mov'),
     thumbnailUrl:
       'https://ew.com/thmb/Oek4tZSQFS82lV8iACtVe1q7yCk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/spiderman-2000-4e34f183efbd40e6aa7a6e2b2725e69e.jpg',
     duration: '8:18',
@@ -186,6 +191,7 @@ export const VIDEO_DATA = [
   {
     id: 'V_ID_6',
     title: 'Hulk',
+    video: require('../../assets/videos/video6.mov'),
     thumbnailUrl:
       'https://ew.com/thmb/CLn48jGMiHyaFgCBQ3nJpM04wck=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/hulk-2000-9f0ecd0b6a5140b89ec59b2ab1379f8a.jpg',
     duration: '8:18',
@@ -222,6 +228,7 @@ export const VIDEO_DATA = [
   {
     id: 'V_ID_7',
     title: 'Scarlet Witch',
+    video: require('../../assets/videos/video7.mov'),
     thumbnailUrl:
       'https://ew.com/thmb/t5o4scgyj-1vT0nceaPIFQm4jKk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/scarlet-witch-2000-40967f18854642ef87f9b8a10d1d5856.jpg',
     duration: '8:18',
@@ -258,6 +265,7 @@ export const VIDEO_DATA = [
   {
     id: 'V_ID_8',
     title: 'Black Panther',
+    video: require('../../assets/videos/video8.mp4'),
     thumbnailUrl:
       'https://ew.com/thmb/aRaON4YnrGHgmthcFdm_ULphVyU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/black-panther-2000-417ccf1a499a4dcfaddab5f6aade5c88.jpg',
     duration: '12:18',
@@ -295,6 +303,7 @@ export const VIDEO_DATA = [
   {
     id: 'V_ID_9',
     title: 'ShadowHunter99',
+    video: require('../../assets/videos/video9.mp4'),
     thumbnailUrl:
       'https://ew.com/thmb/aRaON4YnrGHgmthcFdm_ULphVyU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/black-panther-2000-417ccf1a499a4dcfaddab5f6aade5c88.jpg',
     duration: '12:18',
@@ -332,6 +341,7 @@ export const VIDEO_DATA = [
   {
     id: 'V_ID_10',
     title: 'EvyTheExplorer',
+    video: require('../../assets/videos/video10.mp4'),
     thumbnailUrl:
       'https://ew.com/thmb/aRaON4YnrGHgmthcFdm_ULphVyU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/black-panther-2000-417ccf1a499a4dcfaddab5f6aade5c88.jpg',
     duration: '10:45',
@@ -369,6 +379,7 @@ export const VIDEO_DATA = [
   {
     id: 'V_ID_11',
     title: 'WarriorX23',
+    video: require('../../assets/videos/video11.mp4'),
     thumbnailUrl:
       'https://ew.com/thmb/aRaON4YnrGHgmthcFdm_ULphVyU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/black-panther-2000-417ccf1a499a4dcfaddab5f6aade5c88.jpg',
     duration: '15:30',

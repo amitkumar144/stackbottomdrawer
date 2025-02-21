@@ -44,7 +44,7 @@ export default FeedFooter;
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    bottom: 120,
+    bottom: Platform.OS === 'ios' ? 120 : 90,
     marginLeft: 20,
   },
   profileContainer: {

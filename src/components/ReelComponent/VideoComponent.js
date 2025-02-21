@@ -1,4 +1,4 @@
-import {StyleSheet, useWindowDimensions} from 'react-native';
+import {Platform, StyleSheet, useWindowDimensions} from 'react-native';
 import React, {useMemo} from 'react';
 import Video from 'react-native-video';
 import LinearGradient from 'react-native-linear-gradient';
@@ -11,7 +11,7 @@ const VideoComponent = ({data, isVisible}) => {
   return (
     <>
       <Video
-        source={{uri: data.videoUrl}}
+        source={{uri: data.video}}
         autoPlay
         repeat
         resizeMode="cover"
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   video: height => ({
     backgroundColor: 'black',
     width: '100%',
-    height,
+    height: Platform.OS === 'ios' ? height : height - 50,
   }),
   controlsContainer: {
     ...StyleSheet.absoluteFillObject,

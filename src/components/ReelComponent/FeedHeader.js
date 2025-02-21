@@ -1,4 +1,4 @@
-import {SafeAreaView, StyleSheet, Text} from 'react-native';
+import {Platform, SafeAreaView, StyleSheet, Text} from 'react-native';
 import React from 'react';
 import {CameraIcon} from '../../assets';
 
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     position: 'absolute',
-    top: 65,
+    top: Platform.OS === 'ios' ? 65 : 10,
     marginHorizontal: 20,
   },
   alignRight: {

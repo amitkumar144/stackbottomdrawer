@@ -1,4 +1,4 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, Platform, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {CommentIcon, HeartIcon, MenuIcon, ShareIcon} from '../../assets';
 
@@ -34,7 +34,7 @@ export default FeedSideBar;
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    bottom: 120,
+    bottom: Platform.OS === 'ios' ? 120 : 90,
     alignSelf: 'flex-end',
     alignItems: 'center',
     gap: 20,

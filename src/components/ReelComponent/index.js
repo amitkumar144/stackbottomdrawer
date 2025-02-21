@@ -1,4 +1,10 @@
-import {Animated, StyleSheet, View, useWindowDimensions} from 'react-native';
+import {
+  Animated,
+  StatusBar,
+  StyleSheet,
+  View,
+  useWindowDimensions,
+} from 'react-native';
 import React, {useRef, useState, useCallback} from 'react';
 import {VIDEO_DATA} from './data';
 import FeedRow from './FeedRow';
@@ -58,6 +64,7 @@ const ReelComponent = () => {
 
   return (
     <View style={styles.flexContainer}>
+      <StatusBar barStyle={'light-content'} backgroundColor={'black'} />
       <Animated.FlatList
         pagingEnabled
         showsVerticalScrollIndicator={false}

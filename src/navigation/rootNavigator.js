@@ -16,6 +16,7 @@ import CarouselBackgroundAnimation from '../screens/CarouselBackgroundAnimation'
 import SharedElementTransitionOne from '../components/SharedElementTransition/SharedElementTransitionOne';
 import ToDoComponent from '../components/TodoComponent';
 import ReelComponent from '../components/ReelComponent';
+import ImageView from '../components/ImageView';
 
 const Stack = createStackNavigator();
 
@@ -33,6 +34,7 @@ const LoginStack = () => {
       <Stack.Screen name="VerticalCard" component={VerticalScrollableCard} />
       <Stack.Screen name='Todo' component={ToDoComponent} />
       <Stack.Screen name='Reel' component={ReelComponent} />
+      <Stack.Screen name='ImageView' component={ImageView} />
       <Stack.Screen
         name="CarouselCard"
         component={CarouselBackgroundAnimation}

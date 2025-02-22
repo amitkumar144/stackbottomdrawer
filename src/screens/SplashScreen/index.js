@@ -4,7 +4,7 @@ import {Colors} from '../../config/styles';
 
 const SplashScreen = ({navigation}) => {
   const onGetStartedPress = () => {
-    navigation.navigate('HomeScreen');
+    navigation.navigate('ImageView');
   };
   return (
     <View style={styles.container}>

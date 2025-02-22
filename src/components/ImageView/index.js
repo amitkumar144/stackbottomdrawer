@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   imageStyle: {
-    width: 300,
+    width: 250,
     height: 400,
   },
   contentContainerStyle: {

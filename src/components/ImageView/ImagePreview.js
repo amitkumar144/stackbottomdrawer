@@ -65,12 +65,11 @@ const ImagePreview = ({flatListRef, data, selectedIndex, closePreview}) => {
           pagingEnabled
           scrollEnabled={data.length > 0}
           showsHorizontalScrollIndicator={false}
-          keyExtractor={(item, index) => index.toString()}
+          keyExtractor={(_, index) => index.toString()}
           initialScrollIndex={selectedIndex}
           getItemLayout={getItemLayout}
           onMomentumScrollEnd={onMomentumScrollEnd}
           renderItem={renderItem}
-          bounces={false}
         />
       </View>
     </Modal>
@@ -86,14 +85,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: 20,
-    // backgroundColor: 'red'
   }),
   image: (width, height, rotation) => ({
-    width: rotation % 180 === 0 ? width - 40 : height - 40,
-    height: rotation % 180 === 0 ? height - 40 : width - 40,
-    resizeMode: 'contain',
+    width: rotation % 180 === 0 ? width - 40 : height - 340,
+    height: rotation % 180 === 0 ? height - 340 : width - 40,
+    resizeMode: rotation % 180 === 0 ? 'cover' : 'contain',
     transform: [{rotate: `${rotation}deg`}],
-    borderRadius: 20,
+    borderRadius: 14,
+    overflow: 'hidden',
   }),
   closeButton: {
     position: 'absolute',

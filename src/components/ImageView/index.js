@@ -6,7 +6,7 @@ import {
   View,
 } from 'react-native';
 import React, {useCallback, useState, useRef} from 'react';
-import {data} from '../../screens/CarouselBackgroundAnimation/data';
+import {metaData} from '../../screens/CarouselBackgroundAnimation/data';
 import ImagePreview from './ImagePreview';
 
 const ImageView = () => {
@@ -35,7 +35,7 @@ const ImageView = () => {
     <View style={styles.container}>
       <FlatList
         horizontal
-        data={data}
+        data={metaData}
         renderItem={renderItem}
         contentContainerStyle={styles.contentContainerStyle}
         showsHorizontalScrollIndicator={false}
@@ -43,7 +43,7 @@ const ImageView = () => {
 
       {selectedIndex !== null && (
         <ImagePreview
-          data={data}
+          data={metaData}
           flatListRef={flatListRef}
           selectedIndex={selectedIndex}
           closePreview={closePreview}

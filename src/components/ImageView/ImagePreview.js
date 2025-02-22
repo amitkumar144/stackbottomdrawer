@@ -63,12 +63,14 @@ const ImagePreview = ({flatListRef, data, selectedIndex, closePreview}) => {
           data={data}
           horizontal
           pagingEnabled
+          scrollEnabled={data.length > 0}
           showsHorizontalScrollIndicator={false}
           keyExtractor={(item, index) => index.toString()}
           initialScrollIndex={selectedIndex}
           getItemLayout={getItemLayout}
           onMomentumScrollEnd={onMomentumScrollEnd}
           renderItem={renderItem}
+          bounces={false}
         />
       </View>
     </Modal>
@@ -84,6 +86,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: 20,
+    // backgroundColor: 'red'
   }),
   image: (width, height, rotation) => ({
     width: rotation % 180 === 0 ? width - 40 : height - 40,

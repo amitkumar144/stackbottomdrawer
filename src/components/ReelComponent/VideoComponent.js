@@ -1,9 +1,11 @@
+import React, {useMemo, useRef, useState, useCallback} from 'react';
 import {Dimensions, Platform, StyleSheet, TouchableOpacity} from 'react-native';
-import React, {useMemo, useRef, useState} from 'react';
 import Video from 'react-native-video';
 import LinearGradient from 'react-native-linear-gradient';
 import {PlayIcon} from '../../assets';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
+
+const {width: WINDOW_WIDTH, height: WINDOW_HEIGHT} = Dimensions.get('window');
 
 const VideoComponent = ({data, isVisible}) => {
   const [play, setPlay] = useState(false);
@@ -11,45 +13,35 @@ const VideoComponent = ({data, isVisible}) => {
   const [totalVideoDuration, setTotalVideoDuration] = useState(0);
   const videoRef = useRef(null);
 
-  const WINDOW_HEIGHT = Dimensions.get('window').height;
-  const WINDOW_WIDTH = Dimensions.get('window').width;
+  const videoStyle = useMemo(() => styles.video, []);
 
-  const videoStyle = useMemo(
-    () => styles.video(WINDOW_HEIGHT),
-    [WINDOW_HEIGHT],
-  );
+  const onProgress = useCallback(({currentTime, seekableDuration}) => {
+    setSliderValue(Math.floor(currentTime || 0));
+  }, []);
 
-  // Update slider progress as the video plays
-  const onProgress = progress => {
-    let currentTime = Math.floor(progress.currentTime) || 0;
-    let seekableDuration = Math.floor(progress.seekableDuration);
-    if (currentTime <= seekableDuration) {
-      setSliderValue(currentTime);
-    }
-  };
-
-  // Seek video when the user drags slider
-  const onSlidingComplete = values => {
-    const seekTime = values[0]; // Extract single slider value
-    if (videoRef.current) {
-      videoRef.current.seek(seekTime);
-    }
+  const onSlidingComplete = useCallback(values => {
+    const seekTime = values[0];
+    videoRef.current?.seek(seekTime);
     setSliderValue(seekTime);
-  };
+  }, []);
 
-  const onLoad = data => {
-    setTotalVideoDuration(data.duration || 0);
-  };
+  const onLoad = useCallback(({duration}) => {
+    setTotalVideoDuration(Math.floor(duration));
+  }, []);
+
+  const onEnd = useCallback(() => {
+    videoRef.current?.seek(0);
+    setPlay(false);
+  }, []);
 
   return (
     <TouchableOpacity
-      style={{justifyContent: 'center', alignItems: 'center'}}
+      style={styles.container}
       activeOpacity={1}
-      onPress={() => setPlay(!play)}>
+      onPress={() => setPlay(prev => !prev)}>
       <Video
         ref={videoRef}
         source={{uri: data.video}}
-        repeat
         resizeMode="contain"
         muted={!isVisible}
         playInBackground={false}
@@ -58,26 +50,19 @@ const VideoComponent = ({data, isVisible}) => {
         style={videoStyle}
         onProgress={onProgress}
         onLoad={onLoad}
+        onEnd={onEnd}
       />
 
       {play && (
         <TouchableOpacity
-          onPress={() => setPlay(!play)}
+          onPress={() => setPlay(true)}
           style={styles.iconContainer}>
           <PlayIcon width={70} height={70} />
         </TouchableOpacity>
       )}
 
       <LinearGradient
-        colors={[
-          '#000000F0',
-          '#000000D0',
-          '#000000A0',
-          '#00000070',
-          '#00000040',
-        ]}
-        start={{x: 0, y: 0}}
-        end={{x: 0, y: 0.5}}
+        colors={styles.gradientColors}
         style={styles.controlsContainer}
       />
 
@@ -86,19 +71,13 @@ const VideoComponent = ({data, isVisible}) => {
         values={[sliderValue]}
         min={0}
         max={totalVideoDuration}
-        onValuesChange={values => setSliderValue(values[0])}
         onValuesChangeFinish={onSlidingComplete}
-        sliderLength={WINDOW_WIDTH - 10}
-        selectedStyle={{backgroundColor: '#FFFFFF'}}
-        unselectedStyle={{backgroundColor: '#989898'}}
-        trackStyle={{height: 2, borderRadius: 5}}
-        markerStyle={{
-          height: 15,
-          width: 15,
-          borderRadius: 10,
-          backgroundColor: '#FFFFFF',
-        }}
-        containerStyle={styles.sliderContainer(WINDOW_WIDTH)}
+        sliderLength={WINDOW_WIDTH - 20}
+        selectedStyle={styles.sliderSelected}
+        unselectedStyle={styles.sliderUnselected}
+        trackStyle={styles.sliderTrack}
+        markerStyle={styles.sliderMarker}
+        containerStyle={styles.sliderContainer}
       />
     </TouchableOpacity>
   );
@@ -107,28 +86,55 @@ const VideoComponent = ({data, isVisible}) => {
 export default VideoComponent;
 
 const styles = StyleSheet.create({
-  video: height => ({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  video: {
     backgroundColor: 'black',
     width: '100%',
-    height: Platform.OS === 'ios' ? height : height - 50,
-  }),
-  controlsContainer: {
-    ...StyleSheet.absoluteFillObject,
+    height: Platform.OS === 'ios' ? WINDOW_HEIGHT : WINDOW_HEIGHT - 50,
   },
   iconContainer: {
     position: 'absolute',
     backgroundColor: '#00000080',
     borderRadius: 50,
-    padding: 10,
+    padding: 3,
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 2,
   },
-  sliderContainer: width => ({
+  controlsContainer: {
+    ...StyleSheet.absoluteFillObject,
+  },
+  gradientColors: [
+    '#000000F0',
+    '#000000D0',
+    '#000000A0',
+    '#00000070',
+    '#00000040',
+  ],
+  sliderContainer: {
     position: 'absolute',
     bottom: 80,
-    width: width,
+    width: WINDOW_WIDTH - 20,
     alignSelf: 'center',
     alignItems: 'center',
-  }),
+  },
+  sliderSelected: {
+    backgroundColor: '#FFFFFF',
+  },
+  sliderUnselected: {
+    backgroundColor: '#989898',
+  },
+  sliderTrack: {
+    height: 2,
+    borderRadius: 5,
+  },
+  sliderMarker: {
+    height: 15,
+    width: 15,
+    borderRadius: 10,
+    backgroundColor: '#FFFFFF',
+  },
 });

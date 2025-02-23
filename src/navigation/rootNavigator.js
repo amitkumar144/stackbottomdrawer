@@ -17,6 +17,7 @@ import SharedElementTransitionOne from '../components/SharedElementTransition/Sh
 import ToDoComponent from '../components/TodoComponent';
 import ReelComponent from '../components/ReelComponent';
 import ImageView from '../components/ImageView';
+import GalleryView from '../components/GalleryView';
 
 const Stack = createStackNavigator();
 
@@ -35,6 +36,7 @@ const LoginStack = () => {
       <Stack.Screen name='Todo' component={ToDoComponent} />
       <Stack.Screen name='Reel' component={ReelComponent} />
       <Stack.Screen name='ImageView' component={ImageView} />
+      <Stack.Screen name='GalleryView' component={GalleryView} />
       <Stack.Screen
         name="CarouselCard"
         component={CarouselBackgroundAnimation}

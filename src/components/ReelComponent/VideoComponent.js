@@ -55,7 +55,7 @@ const VideoComponent = ({data, isVisible}) => {
 
       {play && (
         <TouchableOpacity
-          onPress={() => setPlay(true)}
+          onPress={() => setPlay(!play)}
           style={styles.iconContainer}>
           <PlayIcon width={70} height={70} />
         </TouchableOpacity>

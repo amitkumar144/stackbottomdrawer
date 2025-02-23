@@ -3,17 +3,20 @@ import {
   Image,
   Modal,
   StyleSheet,
+  Text,
   TouchableOpacity,
   useWindowDimensions,
   View,
 } from 'react-native';
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useState, useRef} from 'react';
 import {CloseIcon, RotateIcon} from '../../assets';
+import PaginationView from './PaginationView';
 
 const ImagePreview = ({flatListRef, data, selectedIndex, closePreview}) => {
-  const [rotationMap, setRotationMap] = useState({});
   const {width, height} = useWindowDimensions();
+  const listRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(selectedIndex || 0);
+  const [rotationMap, setRotationMap] = useState({});
 
   const rotateImage = () => {
     setRotationMap(prev => ({
@@ -37,16 +40,27 @@ const ImagePreview = ({flatListRef, data, selectedIndex, closePreview}) => {
     [rotationMap],
   );
 
-  const onMomentumScrollEnd = event => {
-    const newIndex = Math.round(event.nativeEvent.contentOffset.x / width);
-    setCurrentIndex(newIndex);
-  };
+  const onMomentumScrollEnd = useCallback(
+    event => {
+      const newIndex = Math.round(event.nativeEvent.contentOffset.x / width);
+      setCurrentIndex(newIndex);
+    },
+    [width],
+  );
 
-  const getItemLayout = (data, index) => ({
-    length: width,
-    offset: width * index,
-    index,
-  });
+  const getItemLayout = useCallback(
+    (_, index) => ({
+      length: width,
+      offset: width * index,
+      index,
+    }),
+    [width],
+  );
+
+  const handlePress = newIndex => {
+    setCurrentIndex(newIndex);
+    listRef.current?.scrollToIndex({ index: newIndex, animated: true });
+  };
 
   return (
     <Modal visible={selectedIndex !== null} transparent animationType="fade">
@@ -58,18 +72,27 @@ const ImagePreview = ({flatListRef, data, selectedIndex, closePreview}) => {
           <RotateIcon />
         </TouchableOpacity>
 
+        <Text style={styles.indicatorText}>
+          {`${currentIndex + 1} / ${data.length}`}
+        </Text>
         <FlatList
-          ref={flatListRef}
+          ref={listRef}
           data={data}
           horizontal
           pagingEnabled
           scrollEnabled={data.length > 0}
-          showsHorizontalScrollIndicator={false}
           keyExtractor={(_, index) => index.toString()}
           initialScrollIndex={selectedIndex}
           getItemLayout={getItemLayout}
           onMomentumScrollEnd={onMomentumScrollEnd}
+          showsHorizontalScrollIndicator={false}
           renderItem={renderItem}
+        />
+        <PaginationView
+          data={data}
+          currentIndex={currentIndex}
+          setCurrentIndex={setCurrentIndex}
+          onPress={handlePress}
         />
       </View>
     </Modal>
@@ -92,7 +115,6 @@ const styles = StyleSheet.create({
     resizeMode: rotation % 180 === 0 ? 'cover' : 'contain',
     transform: [{rotate: `${rotation}deg`}],
     borderRadius: 14,
-    overflow: 'hidden',
   }),
   closeButton: {
     position: 'absolute',
@@ -111,5 +133,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#000000D0',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  indicatorText: {
+    position: 'absolute',
+    top: 80,
+    color: '#fff',
+    fontWeight: '600',
+    fontSize: 16,
   },
 });

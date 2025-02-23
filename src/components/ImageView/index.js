@@ -5,31 +5,30 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useCallback, useState, useRef} from 'react';
-import {metaData} from '../../screens/CarouselBackgroundAnimation/data';
+import React, { useCallback, useState, useRef, useMemo } from 'react';
+import { metaData } from '../../screens/CarouselBackgroundAnimation/data';
 import ImagePreview from './ImagePreview';
 
 const ImageView = () => {
   const [selectedIndex, setSelectedIndex] = useState(null);
   const flatListRef = useRef(null);
 
-  const openPreview = index => {
-    setSelectedIndex(index);
-  };
+  const handlePreview = (index = null) => setSelectedIndex(index);
 
-  const closePreview = () => {
-    setSelectedIndex(null);
-  };
-
-  const renderItem = useCallback(({item, index}) => {
-    return (
+  const renderItem = useCallback(
+    ({ item, index }) => (
       <TouchableOpacity
         style={styles.imageContainer}
-        onPress={() => openPreview(index)}>
-        <Image source={{uri: item}} style={styles.imageStyle} />
+        onPress={() => handlePreview(index)}
+        activeOpacity={0.8}
+      >
+        <Image source={{ uri: item }} style={styles.imageStyle} />
       </TouchableOpacity>
-    );
-  }, []);
+    ),
+    []
+  );
+
+  const keyExtractor = useCallback((_, index) => index.toString(), []);
 
   return (
     <View style={styles.container}>
@@ -37,16 +36,16 @@ const ImageView = () => {
         horizontal
         data={metaData}
         renderItem={renderItem}
+        keyExtractor={keyExtractor}
         contentContainerStyle={styles.contentContainerStyle}
         showsHorizontalScrollIndicator={false}
       />
-
       {selectedIndex !== null && (
         <ImagePreview
           data={metaData}
           flatListRef={flatListRef}
           selectedIndex={selectedIndex}
-          closePreview={closePreview}
+          closePreview={() => handlePreview(null)}
         />
       )}
     </View>
@@ -68,6 +67,7 @@ const styles = StyleSheet.create({
   imageStyle: {
     width: 250,
     height: 400,
+    borderRadius: 14,
   },
   contentContainerStyle: {
     gap: 24,

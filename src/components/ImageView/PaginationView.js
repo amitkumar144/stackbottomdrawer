@@ -26,7 +26,10 @@ const PaginationView = ({data = [], currentIndex, onPress}) => {
       contentContainerStyle={styles.contentContainerStyle}
       showsHorizontalScrollIndicator={false}
       scrollEnabled={false}
-      style={{marginBottom: 100}}
+      style={{
+        position: 'absolute',
+        bottom: 82,
+      }}
     />
   );
 };

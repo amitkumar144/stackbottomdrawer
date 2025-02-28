@@ -59,43 +59,41 @@ const ImagePreview = ({flatListRef, data, selectedIndex, closePreview}) => {
 
   const handlePress = newIndex => {
     setCurrentIndex(newIndex);
-    listRef.current?.scrollToIndex({ index: newIndex, animated: true });
+    listRef.current?.scrollToIndex({index: newIndex, animated: true});
   };
 
   return (
-    <Modal visible={selectedIndex !== null} transparent animationType="fade">
-      <View style={styles.modalContainer}>
-        <TouchableOpacity style={styles.closeButton} onPress={closePreview}>
-          <CloseIcon />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.rotateButton} onPress={rotateImage}>
-          <RotateIcon />
-        </TouchableOpacity>
+    <View style={styles.modalContainer}>
+      <TouchableOpacity style={styles.closeButton} onPress={closePreview}>
+        <CloseIcon />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.rotateButton} onPress={rotateImage}>
+        <RotateIcon />
+      </TouchableOpacity>
 
-        <Text style={styles.indicatorText}>
-          {`${currentIndex + 1} / ${data.length}`}
-        </Text>
-        <FlatList
-          ref={listRef}
-          data={data}
-          horizontal
-          pagingEnabled
-          scrollEnabled={data.length > 0}
-          keyExtractor={(_, index) => index.toString()}
-          initialScrollIndex={selectedIndex}
-          getItemLayout={getItemLayout}
-          onMomentumScrollEnd={onMomentumScrollEnd}
-          showsHorizontalScrollIndicator={false}
-          renderItem={renderItem}
-        />
-        <PaginationView
-          data={data}
-          currentIndex={currentIndex}
-          setCurrentIndex={setCurrentIndex}
-          onPress={handlePress}
-        />
-      </View>
-    </Modal>
+      <Text style={styles.indicatorText}>
+        {`${currentIndex + 1} / ${data.length}`}
+      </Text>
+      <FlatList
+        ref={listRef}
+        data={data}
+        horizontal
+        pagingEnabled
+        scrollEnabled={data.length > 0}
+        keyExtractor={(_, index) => index.toString()}
+        initialScrollIndex={selectedIndex}
+        getItemLayout={getItemLayout}
+        onMomentumScrollEnd={onMomentumScrollEnd}
+        showsHorizontalScrollIndicator={false}
+        renderItem={renderItem}
+      />
+      <PaginationView
+        data={data}
+        currentIndex={currentIndex}
+        setCurrentIndex={setCurrentIndex}
+        onPress={handlePress}
+      />
+    </View>
   );
 };
 
@@ -109,6 +107,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: 20,
   }),
+
+  modalContainer: {
+    flex: 1,
+    backgroundColor: '#000000D0',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+  },
+
   image: (width, height, rotation) => ({
     width: rotation % 180 === 0 ? width - 40 : height - 340,
     height: rotation % 180 === 0 ? height - 340 : width - 40,
@@ -128,12 +135,7 @@ const styles = StyleSheet.create({
     left: 20,
     zIndex: 10,
   },
-  modalContainer: {
-    flex: 1,
-    backgroundColor: '#000000D0',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+
   indicatorText: {
     position: 'absolute',
     top: 80,

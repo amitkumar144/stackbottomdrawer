@@ -1,6 +1,7 @@
 import {
   FlatList,
   Image,
+  StatusBar,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -32,6 +33,7 @@ const ImageView = () => {
 
   return (
     <View style={styles.container}>
+      <StatusBar />
       <FlatList
         horizontal
         data={metaData}

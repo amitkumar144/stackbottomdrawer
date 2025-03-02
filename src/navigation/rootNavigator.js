@@ -20,6 +20,7 @@ import ImageView from '../components/ImageView';
 import GalleryView from '../components/GalleryView';
 import CarouselWithLeftRightPartialVisible from '../components/CarouselWithLeftRightParticalVisible';
 import GalleryCarouselWithLeftRightPartialVisible from '../components/GalleryCarouselWithLeftRightPartialVisible';
+import ParallaxView from '../components/ParallexView';
 
 const Stack = createStackNavigator();
 
@@ -41,6 +42,7 @@ const LoginStack = () => {
       <Stack.Screen name='GalleryView' component={GalleryView} />
       <Stack.Screen name='Carousel' component={CarouselWithLeftRightPartialVisible} />
       <Stack.Screen name="GalleryCarousel" component={GalleryCarouselWithLeftRightPartialVisible} />
+      <Stack.Screen name="ParallaxView" component={ParallaxView} />
       <Stack.Screen
         name="CarouselCard"
         component={CarouselBackgroundAnimation}

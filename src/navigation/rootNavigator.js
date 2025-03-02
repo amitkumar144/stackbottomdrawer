@@ -18,6 +18,9 @@ import ToDoComponent from '../components/TodoComponent';
 import ReelComponent from '../components/ReelComponent';
 import ImageView from '../components/ImageView';
 import GalleryView from '../components/GalleryView';
+import Carousel from '../components/CarouselWithLeftRightParticalVisible';
+import GalleryCarousel from '../components/GalleryCarousel';
+import CarouselWithLeftRightPartialVisible from '../components/CarouselWithLeftRightParticalVisible';
 
 const Stack = createStackNavigator();
 
@@ -37,6 +40,8 @@ const LoginStack = () => {
       <Stack.Screen name='Reel' component={ReelComponent} />
       <Stack.Screen name='ImageView' component={ImageView} />
       <Stack.Screen name='GalleryView' component={GalleryView} />
+      <Stack.Screen name='Carousel' component={CarouselWithLeftRightPartialVisible} />
+      <Stack.Screen name="GalleryCarousel" component={GalleryCarousel} />
       <Stack.Screen
         name="CarouselCard"
         component={CarouselBackgroundAnimation}

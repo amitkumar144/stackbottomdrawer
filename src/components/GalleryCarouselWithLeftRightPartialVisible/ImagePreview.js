@@ -13,7 +13,7 @@ const {width, height} = Dimensions.get('screen');
 
 const _imageWidth = width * 0.8;
 const _imageHeight = _imageWidth * 1.76;
-const _spacing = 12;
+const _spacing = 16;
 
 const ImagePreview = ({closePreview, selectedIndex = 0, data}) => {
   const [rotations, setRotations] = useState({});

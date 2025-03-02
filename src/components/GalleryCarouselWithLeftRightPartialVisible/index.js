@@ -6,11 +6,11 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useCallback, useState, useRef, useMemo} from 'react';
+import React, {useCallback, useState, useRef} from 'react';
 import {metaData} from '../../screens/CarouselBackgroundAnimation/data';
 import ImagePreview from './ImagePreview';
 
-const GalleryCarousel = () => {
+const GalleryCarouselWithLeftRightPartialVisible = () => {
   const [selectedIndex, setSelectedIndex] = useState(null);
   const flatListRef = useRef(null);
 
@@ -53,7 +53,7 @@ const GalleryCarousel = () => {
   );
 };
 
-export default GalleryCarousel;
+export default GalleryCarouselWithLeftRightPartialVisible;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
